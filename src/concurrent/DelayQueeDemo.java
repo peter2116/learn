@@ -1,6 +1,7 @@
 package concurrent;
 
 import org.junit.Test;
+import org.omg.CORBA.TIMEOUT;
 
 import java.util.concurrent.DelayQueue;
 import java.util.concurrent.Delayed;
@@ -27,16 +28,20 @@ public class DelayQueeDemo {
 		Delayed e1 = new Delayed() {
 			@Override
 			public long getDelay(TimeUnit unit) {
-				return 1000*60*1;
+
+				long delayMills = 1000;
+
+				return unit.convert(delayMills , TimeUnit.SECONDS);
 			}
 
 			@Override
 			public int compareTo(Delayed o) {
-				return o.compareTo(this);
+				long time = (getDelay(TimeUnit.NANOSECONDS) - o.getDelay(TimeUnit.NANOSECONDS));
+				return (time == 0) ? 0 : ((time < 0) ? -1 : 1);
 			}
 
 		};
-		e1.getDelay(TimeUnit.SECONDS);
+//		e1.getDelay(TimeUnit.SECONDS);
 
 		delayQueue.add(e1);
 

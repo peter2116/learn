@@ -80,4 +80,17 @@ public class BlockQueeDemo {
 	/***************************************************************************************/
 
 
+	@Test
+	public void testLinkedBlockingQueue() throws InterruptedException {
+		BlockingQueue<String> unbounded = new LinkedBlockingDeque<>();
+		BlockingQueue<String> bound = new LinkedBlockingDeque<String>(1);
+
+		bound.put("i am first");
+		bound.put("i am second");
+
+		String value = bound.take();
+
+		System.out.println("value====" + value);
+	}
+
 }

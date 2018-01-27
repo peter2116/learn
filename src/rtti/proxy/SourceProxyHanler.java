@@ -23,11 +23,13 @@ public class SourceProxyHanler implements InvocationHandler {
 	@Override
 	public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
 
-		System.out.println("before ====== ");
+		String methodName = method.getName();
+
+		System.out.println("before ====== " + methodName);
 
 		method.invoke(source,args);
 
-		System.out.println("end =======");
+		System.out.println("end =======" + methodName);
 
 		return null;
 	}
@@ -42,6 +44,8 @@ public class SourceProxyHanler implements InvocationHandler {
 		Source source = (Source) Proxy.newProxyInstance(target.getClass().getClassLoader(), target.getClass().getInterfaces(),sourceProxyHanler);
 
 		source.method();
+
+		source.method2();
 
 	}
 

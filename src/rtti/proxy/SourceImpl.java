@@ -13,4 +13,11 @@ public class SourceImpl implements Source {
 	public void method() {
 		System.out.println("$$$$$$$$$$$$$$$$$");
 	}
+
+
+	@Override
+	public void method2() {
+		System.out.println("---------method2");
+	}
+
 }

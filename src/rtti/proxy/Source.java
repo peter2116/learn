@@ -10,4 +10,6 @@ package rtti.proxy;
 public interface Source {
 
 	void method();
+
+	void method2();
 }
